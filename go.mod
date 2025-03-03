@@ -1,4 +1,4 @@
-module github.com/sudhi001/pf_gem_pack
+module github.com/sudhi001/pg_gem_pack
 
 go 1.23.4
 
