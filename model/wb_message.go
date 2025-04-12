@@ -3,6 +3,8 @@ package models
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/lib/pq"
 )
 
 // WhatsApp represents the 'whatsapp' table
@@ -18,7 +20,7 @@ type WhatsAppBusinessMessageRequest struct {
 	UID              string                                   `gorm:"not null;index"`
 	TemplateName     string                                   `gorm:"size:100;" json:"template_name"`
 	Data             json.RawMessage                          `gorm:"not null"`
-	PhoneNumbers     []string                                 `gorm:"type:text[]"`
+	PhoneNumbers     pq.StringArray                           `gorm:"type:text[]"`
 	Responses        []json.RawMessage                        `gorm:"type:jsonb[]"` // Array of JSON objects (jsonb[])
 	ReferenceID      string                                   `gorm:"index"`
 	MessageResponses []WhatsAppBusinessMessageRequestResponse `gorm:"foreignKey:RequestID;references:ID;constraint:OnDelete:CASCADE"`
