@@ -9,6 +9,7 @@ type BaseModel struct {
 	CreatedByUID string    `gorm:"index;null"`
 	CreatedAt    time.Time `gorm:"autoCreateTime"`
 	UpdatedAt    time.Time `gorm:"autoUpdateTime"`
+	Active       bool      `gorm:"default:true"` // Flag to identify if this is active or disabled
 }
 
 // JSON type for handling JSON data in Go
