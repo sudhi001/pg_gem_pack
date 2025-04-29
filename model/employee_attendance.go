@@ -5,7 +5,6 @@ import "time"
 type EmployeeAttendance struct {
 	BaseModel
 	UID          string    `gorm:"index"`                  // Unique identifier, indexed
-	EmployeeID   uint      `gorm:"index"`                  // Employee ID, indexed
 	EmployeeCode string    `gorm:"index"`                  // Employee code from security access, indexed
 	Date         time.Time `gorm:"index;type:date"`        // Date of attendance (without time component), indexed
 	FirstCheckIn time.Time `gorm:"index"`                  // First check-in time of the day, indexed
