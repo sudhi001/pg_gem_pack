@@ -32,6 +32,7 @@ type WhatsAppBusinessMessageRequestResponse struct {
 	RecipientID string    `gorm:"not null"`
 	Timestamp   time.Time `gorm:"not null"`
 	Status      string    `gorm:"not null"`
+	PhoneNumber string    `gorm:"not null"`
 	RequestID   uint      `gorm:"not null;index;"`
 }
 
