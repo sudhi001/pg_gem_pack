@@ -17,3 +17,8 @@ type WhatsAppContact struct {
 	LastSeen time.Time `gorm:"index" json:"last_seen"`
 	Active   bool      `gorm:"default:true" json:"active"`
 }
+
+// Add this method to your WhatsAppContact struct
+func (WhatsAppContact) TableName() string {
+	return "whats_app_contacts" // Note the underscores
+}
