@@ -21,7 +21,7 @@ type WhatsAppBusinessMessageRequest struct {
 	TemplateName     string                                   `gorm:"size:100;" json:"template_name"`
 	Data             json.RawMessage                          `gorm:"not null"`
 	PhoneNumbers     pq.StringArray                           `gorm:"type:text[]"`
-	Responses        []json.RawMessage                        `gorm:"type:jsonb[]"` // Array of JSON objects (jsonb[])
+	Responses        pq.StringArray                           `gorm:"type:jsonb[]"` // Change this line
 	ReferenceID      string                                   `gorm:"index"`
 	MessageResponses []WhatsAppBusinessMessageRequestResponse `gorm:"foreignKey:RequestID;references:ID;constraint:OnDelete:CASCADE"`
 	SentCount        int                                      `gorm:"default:0" json:"sent_count"`
