@@ -24,6 +24,14 @@ type WhatsAppBusinessMessageRequest struct {
 	Responses        []json.RawMessage                        `gorm:"type:jsonb[]"` // Array of JSON objects (jsonb[])
 	ReferenceID      string                                   `gorm:"index"`
 	MessageResponses []WhatsAppBusinessMessageRequestResponse `gorm:"foreignKey:RequestID;references:ID;constraint:OnDelete:CASCADE"`
+	SentCount        int                                      `gorm:"default:0" json:"sent_count"`
+	DeliveredCount   int                                      `gorm:"default:0" json:"delivered_count"`
+	ReadCount        int                                      `gorm:"default:0" json:"read_count"`
+	FailedCount      int                                      `gorm:"default:0" json:"failed_count"`
+	PendingCount     int                                      `gorm:"default:0" json:"pending_count"`
+	ExpiredCount     int                                      `gorm:"default:0" json:"expired_count"`
+	RepliedCount     int                                      `gorm:"default:0" json:"replied_count"`
+	BlockedCount     int                                      `gorm:"default:0" json:"blocked_count"`
 }
 
 // WhatsAppBusinessMessageRequestResponse represents the 'wb_message_requests_response' table
