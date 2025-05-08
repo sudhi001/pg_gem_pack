@@ -20,6 +20,7 @@ type WhatsAppMessageDB struct {
 	MediaMimeType string  `gorm:"type:varchar(50)" json:"media_mime_type"`
 	MediaSha256   string  `gorm:"type:varchar(64)" json:"media_sha256"`
 	IsAnimated    bool    `gorm:"default:false" json:"is_animated"`
+	StorageURL    string  `gorm:"type:text" json:"storage_url"` // Add this new field
 
 	// Contact reference (foreign key)
 	WaId      string          `gorm:"index;type:varchar(20);not null" json:"wa_id"`
