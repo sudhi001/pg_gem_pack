@@ -35,3 +35,8 @@ type WhatsAppMessageDB struct {
 	RawPayload json.RawMessage `gorm:"type:jsonb" json:"raw_payload"`
 	Status     string          `gorm:"type:varchar(20);default:'received'" json:"status"`
 }
+
+// Add this TableName method to ensure consistent table naming
+func (WhatsAppMessageDB) TableName() string {
+	return "whats_app_messages" // Note the underscores, matching naming convention
+}
