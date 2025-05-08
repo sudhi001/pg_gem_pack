@@ -28,7 +28,6 @@ type WhatsAppBusinessMessageRequest struct {
 	DeliveredCount   int                                      `gorm:"default:0" json:"delivered_count"`
 	ReadCount        int                                      `gorm:"default:0" json:"read_count"`
 	FailedCount      int                                      `gorm:"default:0" json:"failed_count"`
-	PendingCount     int                                      `gorm:"default:0" json:"pending_count"`
 	ExpiredCount     int                                      `gorm:"default:0" json:"expired_count"`
 	RepliedCount     int                                      `gorm:"default:0" json:"replied_count"`
 	BlockedCount     int                                      `gorm:"default:0" json:"blocked_count"`
