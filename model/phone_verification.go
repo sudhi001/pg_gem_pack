@@ -21,11 +21,6 @@ type PhoneVerification struct {
 	RequestHash          string     `gorm:"column:requestHash;index"`
 }
 
-// TableName specifies the table name for the PhoneVerification model
-func (PhoneVerification) TableName() string {
-	return "phone_number_verifications"
-}
-
 // IsOTPExpired checks if the OTP has expired based on the given expiration duration
 func (p *PhoneVerification) IsOTPExpired(expirationMinutes int) bool {
 	if p.OTPGeneratedOn == nil {
