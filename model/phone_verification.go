@@ -1,21 +1,40 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
-// Branche model for handling payment details
-
-type PhoneNumberVerifications struct {
+// PhoneVerification represents phone verification data in the system
+type PhoneVerification struct {
 	BaseModel
-	VerificationID       string     `gorm:"index"`         // Verification ID
-	UserID               string     `gorm:"index"`         // User ID
-	DeviceID             string     `gorm:"index"`         // Device ID
-	PhoneNumber          string     `gorm:"index"`         // Phone number
-	PhoneNumberExtension string     `gorm:"index"`         // Phone number extension
-	OTP                  string     `gorm:"index"`         // OTP
-	Verified             *bool      `gorm:"default:null"`  // Verified status (nullable)
-	CMD                  *string    `gorm:"default:null"`  // Command (e.g., 0 - VERIFICATION, 1 - ACCOUNT DELETION)
-	OTPGeneratedOn       *time.Time `gorm:"default:null"`  // Time when the OTP was generated
-	Send                 bool       `gorm:"default:false"` // Indicates if OTP was sent
-	StatusMessage        *string    `gorm:"default:null"`  // Status message
-	RequestHash          string     `gorm:"index"`
+	VerificationID       string     `gorm:"column:verification_id"`
+	UserID               string     `gorm:"column:user_id"`
+	DeviceID             string     `gorm:"column:device_id"`
+	PhoneNumber          string     `gorm:"column:phone_number"`
+	PhoneNumberExtension string     `gorm:"column:phone_number_extension"`
+	OTP                  string     `gorm:"column:otp"`
+	Verified             *bool      `gorm:"column:verified;default:null"`
+	CMD                  *string    `gorm:"column:cmd;default:null"` // 0 - VERIFICATION, 1 - ACCOUNT DELETION
+	OTPGeneratedOn       *time.Time `gorm:"column:otp_generated_on;default:null"`
+	Send                 bool       `gorm:"column:send;default:false"`
+	StatusMessage        *string    `gorm:"column:status_message;default:null"`
+	RequestHash          string     `gorm:"column:requestHash;index"`
+}
+
+// TableName specifies the table name for the PhoneVerification model
+func (PhoneVerification) TableName() string {
+	return "phone_number_verifications"
+}
+
+// IsOTPExpired checks if the OTP has expired based on the given expiration duration
+func (p *PhoneVerification) IsOTPExpired(expirationMinutes int) bool {
+	if p.OTPGeneratedOn == nil {
+		return true // OTP not generated
+	}
+
+	currentTime := time.Now().UTC()
+	expirationThreshold := time.Duration(expirationMinutes) * time.Minute
+
+	// Check if the time difference is greater than the expiration threshold
+	return currentTime.Sub(*p.OTPGeneratedOn) > expirationThreshold
 }
