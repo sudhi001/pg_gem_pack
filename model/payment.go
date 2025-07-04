@@ -15,8 +15,8 @@ type Payment struct {
 	OrderTags     JSON    `gorm:"type:jsonb"`
 
 	// Payment Information
-	PaymentID       string  `gorm:"size:100;index;not null"` // cf_payment_id
-	PaymentStatus   string  `gorm:"size:50;not null"`        // SUCCESS, FAILED, PENDING
+	PaymentID       string  `gorm:"size:100;uniqueIndex;not null"` // cf_payment_id
+	PaymentStatus   string  `gorm:"size:50;not null"`              // SUCCESS, FAILED, PENDING
 	PaymentAmount   float64 `gorm:"not null"`
 	PaymentCurrency string  `gorm:"size:3;not null"`
 	PaymentMessage  string  `gorm:"size:500"`
@@ -59,6 +59,16 @@ type Payment struct {
 
 	// Relationship to Payment Charges
 	PaymentCharges []PaymentCharge `gorm:"foreignKey:PaymentID;references:PaymentID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
+}
+
+// TableName specifies the table name for Payment
+func (Payment) TableName() string {
+	return "payments"
+}
+
+// TableName specifies the table name for PaymentCharge
+func (PaymentCharge) TableName() string {
+	return "payment_charges"
 }
 
 // PaymentCharge model for storing payment charges information
