@@ -8,7 +8,10 @@ type Transaction struct {
 	TransactionUID  string           `gorm:"size:255;unique;not null"`
 	Amount          float64          `gorm:"not null"`
 	Currency        string           `gorm:"size:3;not null"`
-	SubKey          string           `gorm:"size:50"`
+	ProductCode     string           `gorm:"size:50"`
+	BranchCode      string           `gorm:"size:50"`
+	BranchUID       string           `gorm:"size:255"`
+	UID             string           `gorm:"size:255"`
 	Payload         JSON             `gorm:"type:jsonb;not null"` // Change Payload to use jsonb type in PostgreSQL
 	TransactionLogs []TransactionLog `gorm:"foreignKey:TransactionID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 }
