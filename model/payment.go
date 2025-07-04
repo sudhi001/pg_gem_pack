@@ -8,6 +8,12 @@ type Payment struct {
 	TransactionUID string `gorm:"size:100;index;not null"` // TransactionUID from webhook
 	BranchID       string `gorm:"size:50;index;not null"`  // Branch ID from webhook
 
+	// Product and Branch Information
+	ProductCode string `gorm:"size:50"`  // Product/Scheme code
+	BranchCode  string `gorm:"size:50"`  // Branch code
+	BranchUID   string `gorm:"size:255"` // Branch UID
+	UID         string `gorm:"size:255"` // Subscribable UID
+
 	// Order Information
 	OrderID       string  `gorm:"size:100;index;not null"`
 	OrderAmount   float64 `gorm:"not null"`
