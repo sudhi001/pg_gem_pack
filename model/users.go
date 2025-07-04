@@ -28,6 +28,7 @@ type User struct {
 	Permissions           PermissionString `gorm:"type:text[];default:NULL"`
 	ReasonForBlock        *string          `gorm:"default:null"` // Nullable reason for block
 	ReasonForDeactivation *string          `gorm:"default:null"` // Nullable reason for deactivation
+	AppCustomerCode       *int             `gorm:"default:null"` // ACME customer code
 }
 
 // Strings is a custom type to handle []string serialization/deserialization.
