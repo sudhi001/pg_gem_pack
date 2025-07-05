@@ -12,7 +12,6 @@ type Notification struct {
 	Body         string     `json:"body" gorm:"type:text;not null"`
 	Type         string     `json:"type" gorm:"type:varchar(100);not null"`
 	ImageURL     *string    `json:"image_url" gorm:"type:varchar(500)"`
-	SpaceUID     string     `json:"space_uid" gorm:"type:varchar(100);not null"`
 	TotalDevices int        `json:"total_devices" gorm:"default:0"`
 	SuccessCount int        `json:"success_count" gorm:"default:0"`
 	FailedCount  int        `json:"failed_count" gorm:"default:0"`
