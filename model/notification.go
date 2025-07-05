@@ -6,14 +6,13 @@ import (
 
 // Notification represents a notification sent to a user
 type Notification struct {
-	ID           uint       `json:"id" gorm:"primaryKey;autoIncrement"`
+	BaseModel
+	UID          string     `gorm:"index"`
 	Title        string     `json:"title" gorm:"type:varchar(255);not null"`
 	Body         string     `json:"body" gorm:"type:text;not null"`
 	Type         string     `json:"type" gorm:"type:varchar(100);not null"`
 	ImageURL     *string    `json:"image_url" gorm:"type:varchar(500)"`
 	SpaceUID     string     `json:"space_uid" gorm:"type:varchar(100);not null"`
-	UserID       string     `json:"user_id" gorm:"type:varchar(100);not null"`
-	CreatedByUID string     `json:"created_by_uid" gorm:"type:varchar(100);not null"`
 	TotalDevices int        `json:"total_devices" gorm:"default:0"`
 	SuccessCount int        `json:"success_count" gorm:"default:0"`
 	FailedCount  int        `json:"failed_count" gorm:"default:0"`
@@ -21,8 +20,6 @@ type Notification struct {
 	IsRead       bool       `json:"is_read" gorm:"default:false"`
 	DeliveredAt  *time.Time `json:"delivered_at"`
 	ReadAt       *time.Time `json:"read_at"`
-	CreatedAt    time.Time  `json:"created_at" gorm:"autoCreateTime"`
-	UpdatedAt    time.Time  `json:"updated_at" gorm:"autoUpdateTime"`
 }
 
 // TableName specifies the table name for Notification
