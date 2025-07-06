@@ -8,6 +8,7 @@ import (
 type Offer struct {
 	BaseModel
 	UID              string     `gorm:"uniqueIndex;not null"`                     // Unique identifier for the offer
+	BranchUID        string     `gorm:"index;not null"`                           // Branch UID to which the offer belongs
 	Title            string     `gorm:"size:255;not null;index"`                  // Title of the offer
 	ShortDescription string     `gorm:"size:500;not null"`                        // Short description of the offer
 	Description      string     `gorm:"type:text;not null"`                       // Full description of the offer
