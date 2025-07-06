@@ -61,6 +61,9 @@ type Payment struct {
 	IdempotencyKey string `gorm:"size:500"`
 	Attempt        int    `gorm:"default:1"`
 
+	// Notification tracking
+	NotificationSent bool `gorm:"default:false"` // Track if FCM notification has been sent
+
 	// Raw webhook data for debugging
 	RawWebhookData JSON `gorm:"type:jsonb"`
 	Payload        JSON `gorm:"type:jsonb;not null"`
