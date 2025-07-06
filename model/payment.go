@@ -10,6 +10,7 @@ type Payment struct {
 
 	// Product and Branch Information
 	ProductCode string `gorm:"size:50"`  // Product/Scheme code
+	ProductName string `gorm:"size:255"` // Product/Scheme code
 	BranchCode  string `gorm:"size:50"`  // Branch code
 	BranchUID   string `gorm:"size:255"` // Branch UID
 	UID         string `gorm:"size:255"` // Subscribable UID
@@ -62,6 +63,7 @@ type Payment struct {
 
 	// Raw webhook data for debugging
 	RawWebhookData JSON `gorm:"type:jsonb"`
+	Payload        JSON `gorm:"type:jsonb;not null"`
 
 	// Relationship to Payment Charges
 	PaymentCharges []PaymentCharge `gorm:"foreignKey:PaymentID;references:PaymentID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
