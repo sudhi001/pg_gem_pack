@@ -18,6 +18,8 @@ type Offer struct {
 	VideoURL         *string    `gorm:"size:500;default:null"`                    // URL to the video (nullable)
 	Type             string     `gorm:"size:50;not null;index;default:'general'"` // Type of offer (e.g., 'discount', 'promotion', 'general', etc.)
 	Active           bool       `gorm:"default:true;index"`                       // Whether the offer is active
+	Tags             *JSON      `gorm:"type:json;default:null"`                   // Tags associated with the offer (nullable)
+	Link             *string    `gorm:"size:500;default:null"`                    // Link URL (can be https:// or relative path like /offer/details)
 }
 
 // TableName specifies the table name for the Offer model
