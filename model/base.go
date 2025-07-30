@@ -9,12 +9,12 @@ import (
 
 // BaseModel holds common fields for all models
 type BaseModel struct {
-	ID           uint      `gorm:"primaryKey;autoIncrement;index"`
-	SpaceUID     string    `gorm:"size:50;null"`
-	CreatedByUID string    `gorm:"index;null"`
-	CreatedAt    time.Time `gorm:"autoCreateTime"`
-	UpdatedAt    time.Time `gorm:"autoUpdateTime"`
-	Active       bool      `gorm:"default:true"` // Flag to identify if this is active or disabled
+	ID           uint      `json:"uid" gorm:"primaryKey;autoIncrement;index"`
+	SpaceUID     string    `json:"space_uid" gorm:"size:50;null"`
+	CreatedByUID string    `json:"created_by_uid" gorm:"index;null"`
+	CreatedAt    time.Time `json:"created_at" gorm:"autoCreateTime"`
+	UpdatedAt    time.Time `json:"updated_at" gorm:"autoUpdateTime"`
+	Active       bool      `json:"active" gorm:"default:true"` // Flag to identify if this is active or disabled
 }
 
 // JSON type for handling JSON data in Go
