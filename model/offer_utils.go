@@ -9,14 +9,13 @@ import (
 // AddTag adds a tag to the offer's tags
 func (o *Offer) AddTag(tag string) {
 	if o.Tags == nil {
-		var emptyJSON JSON
-		o.Tags = &emptyJSON
+		o.Tags = &JSON{}
 	}
 
 	// Convert to map if it's not already
 	tagsMap := make(map[string]interface{})
 	if o.Tags != nil {
-		if tagsInterface, ok := (*o.Tags).(map[string]interface{}); ok {
+		if tagsInterface, ok := o.Tags.Data.(map[string]interface{}); ok {
 			for k, v := range tagsInterface {
 				tagsMap[k] = v
 			}
@@ -29,8 +28,7 @@ func (o *Offer) AddTag(tag string) {
 		tagsMap[cleanTag] = cleanTag
 	}
 
-	jsonTags := JSON(tagsMap)
-	o.Tags = &jsonTags
+	o.Tags.Data = tagsMap
 }
 
 // RemoveTag removes a tag from the offer's tags
@@ -42,7 +40,7 @@ func (o *Offer) RemoveTag(tag string) {
 	cleanTag := strings.TrimSpace(strings.ToLower(tag))
 	tagsMap := make(map[string]interface{})
 
-	if tagsInterface, ok := (*o.Tags).(map[string]interface{}); ok {
+	if tagsInterface, ok := o.Tags.Data.(map[string]interface{}); ok {
 		for k, v := range tagsInterface {
 			if k != cleanTag {
 				tagsMap[k] = v
@@ -50,8 +48,7 @@ func (o *Offer) RemoveTag(tag string) {
 		}
 	}
 
-	jsonTags := JSON(tagsMap)
-	o.Tags = &jsonTags
+	o.Tags.Data = tagsMap
 }
 
 // HasTag checks if the offer has a specific tag
@@ -61,7 +58,7 @@ func (o *Offer) HasTag(tag string) bool {
 	}
 
 	cleanTag := strings.TrimSpace(strings.ToLower(tag))
-	if tagsInterface, ok := (*o.Tags).(map[string]interface{}); ok {
+	if tagsInterface, ok := o.Tags.Data.(map[string]interface{}); ok {
 		_, exists := tagsInterface[cleanTag]
 		return exists
 	}
@@ -75,7 +72,7 @@ func (o *Offer) GetTags() []string {
 	}
 
 	var tags []string
-	if tagsInterface, ok := (*o.Tags).(map[string]interface{}); ok {
+	if tagsInterface, ok := o.Tags.Data.(map[string]interface{}); ok {
 		for k := range tagsInterface {
 			tags = append(tags, k)
 		}
@@ -98,8 +95,7 @@ func (o *Offer) SetTags(tags []string) {
 		}
 	}
 
-	jsonTags := JSON(tagsMap)
-	o.Tags = &jsonTags
+	o.Tags = &JSON{Data: tagsMap}
 }
 
 // IsValidLink checks if the link is valid (either https:// or relative path)
