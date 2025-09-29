@@ -9,14 +9,17 @@ import (
 // AddTag adds a tag to the offer's tags
 func (o *Offer) AddTag(tag string) {
 	if o.Tags == nil {
-		o.Tags = &JSON{}
+		var emptyJSON JSON
+		o.Tags = &emptyJSON
 	}
 
 	// Convert to map if it's not already
 	tagsMap := make(map[string]interface{})
 	if o.Tags != nil {
-		for k, v := range *o.Tags {
-			tagsMap[k] = v
+		if tagsInterface, ok := (*o.Tags).(map[string]interface{}); ok {
+			for k, v := range tagsInterface {
+				tagsMap[k] = v
+			}
 		}
 	}
 
@@ -39,9 +42,11 @@ func (o *Offer) RemoveTag(tag string) {
 	cleanTag := strings.TrimSpace(strings.ToLower(tag))
 	tagsMap := make(map[string]interface{})
 
-	for k, v := range *o.Tags {
-		if k != cleanTag {
-			tagsMap[k] = v
+	if tagsInterface, ok := (*o.Tags).(map[string]interface{}); ok {
+		for k, v := range tagsInterface {
+			if k != cleanTag {
+				tagsMap[k] = v
+			}
 		}
 	}
 
@@ -56,8 +61,11 @@ func (o *Offer) HasTag(tag string) bool {
 	}
 
 	cleanTag := strings.TrimSpace(strings.ToLower(tag))
-	_, exists := (*o.Tags)[cleanTag]
-	return exists
+	if tagsInterface, ok := (*o.Tags).(map[string]interface{}); ok {
+		_, exists := tagsInterface[cleanTag]
+		return exists
+	}
+	return false
 }
 
 // GetTags returns all tags as a slice of strings
@@ -67,8 +75,10 @@ func (o *Offer) GetTags() []string {
 	}
 
 	var tags []string
-	for k := range *o.Tags {
-		tags = append(tags, k)
+	if tagsInterface, ok := (*o.Tags).(map[string]interface{}); ok {
+		for k := range tagsInterface {
+			tags = append(tags, k)
+		}
 	}
 	return tags
 }

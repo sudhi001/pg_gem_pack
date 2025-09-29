@@ -17,21 +17,31 @@ type BaseModel struct {
 	Active       bool      `json:"active" gorm:"default:true"` // Flag to identify if this is active or disabled
 }
 
-// JSON type for handling JSON data in Go
-type JSON map[string]interface{}
+// JSON type for handling JSON data in Go (supports both objects and arrays)
+type JSON struct {
+	Data interface{}
+}
+
+// JSONPtr is a pointer to JSON for database operations
+type JSONPtr struct {
+	JSON JSON
+}
+
+// Original JSONObject type for structured objects only
+type JSONObject map[string]interface{}
 
 // Scan implements the sql.Scanner interface for JSON
 func (j *JSON) Scan(value interface{}) error {
 	if value == nil {
-		*j = nil
+		j.Data = nil
 		return nil
 	}
 
 	switch v := value.(type) {
 	case []byte:
-		return json.Unmarshal(v, j)
+		return json.Unmarshal(v, &j.Data)
 	case string:
-		return json.Unmarshal([]byte(v), j)
+		return json.Unmarshal([]byte(v), &j.Data)
 	default:
 		return fmt.Errorf("cannot scan %T into JSON", value)
 	}
@@ -39,8 +49,8 @@ func (j *JSON) Scan(value interface{}) error {
 
 // Value implements the driver.Valuer interface for JSON
 func (j JSON) Value() (driver.Value, error) {
-	if j == nil {
+	if j.Data == nil {
 		return nil, nil
 	}
-	return json.Marshal(j)
+	return json.Marshal(j.Data)
 }
