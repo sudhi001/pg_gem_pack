@@ -39,9 +39,21 @@ func (j *JSON) Scan(value interface{}) error {
 
 	switch v := value.(type) {
 	case []byte:
-		return json.Unmarshal(v, &j.Data)
+		// Try to unmarshal as interface{} to handle both objects and arrays
+		var data interface{}
+		if err := json.Unmarshal(v, &data); err != nil {
+			return err
+		}
+		j.Data = data
+		return nil
 	case string:
-		return json.Unmarshal([]byte(v), &j.Data)
+		// Try to unmarshal as interface{} to handle both objects and arrays
+		var data interface{}
+		if err := json.Unmarshal([]byte(v), &data); err != nil {
+			return err
+		}
+		j.Data = data
+		return nil
 	default:
 		return fmt.Errorf("cannot scan %T into JSON", value)
 	}
