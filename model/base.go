@@ -67,9 +67,9 @@ func (j JSON) Value() (driver.Value, error) {
 	return json.Marshal(j.Data)
 }
 
-// MarshalJSON implements the json.Marshaler interface for JSON
-func (j JSON) MarshalJSON() ([]byte, error) {
-	if j.Data == nil {
+// MarshalJSON implements the json.Marshaler interface for JSON pointer
+func (j *JSON) MarshalJSON() ([]byte, error) {
+	if j == nil || j.Data == nil {
 		return json.Marshal(nil)
 	}
 	return json.Marshal(j.Data)
