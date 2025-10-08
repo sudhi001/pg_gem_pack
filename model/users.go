@@ -14,8 +14,8 @@ type User struct {
 	ExternalUserID        *string          `gorm:"index"`                // Nullable external user ID
 	Email                 *string          `gorm:"index"`                // Nullable email address
 	Password              *string          `gorm:"default:null"`         // Nullable password
-	PhoneNumber           *string          `gorm:"index"`                // Nullable phone number
-	PhoneNumberExtension  *string          `gorm:"default:null"`         // Nullable phone number extension
+	PhoneNumber           *string          `gorm:"index"`                // Phone number
+	PhoneNumberExtension  *string          `gorm:"default:null"`         // Phone number extension
 	Name                  *string          `gorm:"index"`                // Nullable user name
 	ProfileImage          *string          `gorm:"default:null"`         // Nullable profile image URL
 	EmailVerified         bool             `gorm:"default:false"`        // Email verification status
