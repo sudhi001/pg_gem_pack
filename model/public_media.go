@@ -1,9 +1,5 @@
 package models
 
-import (
-	"time"
-)
-
 // PublicMedia represents publicly accessible media files (images, audio, video, documents)
 type PublicMedia struct {
 	BaseModel
@@ -22,4 +18,3 @@ type PublicMedia struct {
 func (PublicMedia) TableName() string {
 	return "public_media"
 }
-
