@@ -35,6 +35,7 @@ type Subscribable struct {
 	BranchCode                        string  `gorm:"index"` // Branch code this rate applies to, indexed
 	Description                       *string `gorm:"default:null"`
 	ShortDescription                  *string `gorm:"default:null"`
+	TermsAndCondition                *string `gorm:"default:null"`
 	Thumbnail                         *string `gorm:"default:null"`
 	PrimaryImage                      *string `gorm:"default:null"`
 }
