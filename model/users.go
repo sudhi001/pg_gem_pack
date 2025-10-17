@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+	"time"
 )
 
 // User represents the User table in the database.
@@ -29,6 +30,9 @@ type User struct {
 	ReasonForBlock        *string          `gorm:"default:null"` // Nullable reason for block
 	ReasonForDeactivation *string          `gorm:"default:null"` // Nullable reason for deactivation
 	AppCustomerCode       *int             `gorm:"default:null"` // ACME customer code
+	LastLoginTime         *time.Time       `gorm:"default:null"` // Last login timestamp
+	LastLoginIP           *string          `gorm:"default:null"` // Last login IP address
+	LastLoginDeviceID     *string          `gorm:"default:null"` // Last login device ID
 }
 
 // Strings is a custom type to handle []string serialization/deserialization.
