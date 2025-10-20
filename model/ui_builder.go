@@ -33,9 +33,10 @@ type UIView struct {
 	Instructions  *JSON     `gorm:"type:json;default:null" json:"instructions,omitempty"`  // Array of instructions
 	List          *JSON     `gorm:"type:json;default:null" json:"list,omitempty"`          // Array of items (for cards, grids, etc.)
 	Actions       *JSON     `gorm:"type:json;default:null" json:"actions,omitempty"`       // Array of actions (for buttons, etc.)
-	Extra         *JSON     `gorm:"type:json;default:null" json:"extra,omitempty"`         // For future extensibility
-	Enabled       bool      `gorm:"default:true;index" json:"enabled"`                     // Flag to enable/disable view rendering
-	BuildNumber   *int      `gorm:"default:null" json:"buildNumber,omitempty"`             // Build number for version filtering
+	Extra                      *JSON     `gorm:"type:json;default:null" json:"extra,omitempty"`                    // For future extensibility
+	Enabled                    bool      `gorm:"default:true;index" json:"enabled"`                                 // Flag to enable/disable view rendering
+	OnlyForAuthenticatedUser   bool      `gorm:"default:false;index" json:"onlyForAuthenticatedUser"`               // Flag to require authentication for view
+	BuildNumber                *int      `gorm:"default:null" json:"buildNumber,omitempty"`                         // Build number for version filtering
 	CreatedAt     time.Time `gorm:"autoCreateTime"`
 	UpdatedAt     time.Time `gorm:"autoUpdateTime"`
 	Children      []UIView  `gorm:"foreignKey:ParentViewID" json:"children,omitempty"`
