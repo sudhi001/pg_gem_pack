@@ -74,3 +74,19 @@ func (j JSON) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(j.Data)
 }
+
+// UnmarshalJSON implements the json.Unmarshaler interface for JSON
+func (j *JSON) UnmarshalJSON(data []byte) error {
+	if data == nil || string(data) == "null" {
+		j.Data = nil
+		return nil
+	}
+
+	// Unmarshal into interface{} to handle both objects and arrays
+	var v interface{}
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	j.Data = v
+	return nil
+}
