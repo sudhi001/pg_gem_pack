@@ -10,8 +10,9 @@ type WhatsAppContact struct {
 	Name string `gorm:"type:varchar(100)" json:"name"`
 
 	// Metadata
-	PhoneNumber   string `gorm:"index:idx_phone;type:varchar(20)" json:"display_phone_number"`
-	PhoneNumberId string `gorm:"type:varchar(50);not null" json:"phone_number_id"`
+	PhoneNumber    string `gorm:"index:idx_phone;type:varchar(20)" json:"display_phone_number"`
+	PhoneNumberId  string `gorm:"type:varchar(50);not null" json:"phone_number_id"`
+	ProfilePicture string `gorm:"type:varchar(500)" json:"profile_picture"`
 
 	// Tracking fields
 	LastSeen time.Time `gorm:"index" json:"last_seen"`
