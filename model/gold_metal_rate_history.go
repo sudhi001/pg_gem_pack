@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-type GoldMetalRateHistory struct {
+type MetalRateHistory struct {
 	BaseModel
 	UID                 string    `gorm:"index"`
 	ItemType            string    `gorm:"index"`
@@ -15,4 +15,11 @@ type GoldMetalRateHistory struct {
 	BranchCode          string    `gorm:"index" json:"branchCode"`
 	SnapshotDate        time.Time `gorm:"index;default:CURRENT_TIMESTAMP" json:"snapshotDate"`
 }
+
+func (MetalRateHistory) TableName() string {
+	return "metal_rates_history"
+}
+
+// GoldMetalRateHistory is an alias for backward compatibility
+type GoldMetalRateHistory = MetalRateHistory
 
