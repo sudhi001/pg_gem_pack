@@ -1,7 +1,7 @@
 package models
 
-// MetalRate model for handling metal rate information
-type MetalRate struct {
+// CurrentMetalRate model for handling current metal rate information
+type CurrentMetalRate struct {
 	BaseModel
 	UID                 string  `gorm:"index"` // Unique identifier, indexed
 	ItemType            string  `gorm:"index"` // Type of metal (Gold, Silver, etc.), indexed
@@ -14,9 +14,10 @@ type MetalRate struct {
 	BranchCode          string  `gorm:"index"` // Branch code this rate applies to, indexed
 }
 
-func (MetalRate) TableName() string {
+func (CurrentMetalRate) TableName() string {
 	return "metal_rates"
 }
 
 // GoldMetalRate is an alias for backward compatibility
-type GoldMetalRate = MetalRate
+type GoldMetalRate = CurrentMetalRate
+
