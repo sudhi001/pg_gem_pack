@@ -19,6 +19,7 @@ type WhatsAppMessageDB struct {
 	MediaID       string  `gorm:"type:varchar(100)" json:"media_id"`
 	MediaMimeType string  `gorm:"type:varchar(50)" json:"media_mime_type"`
 	MediaSha256   string  `gorm:"type:varchar(64)" json:"media_sha256"`
+	MediaFilename string  `gorm:"type:varchar(255)" json:"media_filename"` // Original filename for documents
 	IsAnimated    bool    `gorm:"default:false" json:"is_animated"`
 	StorageURL    string  `gorm:"type:text" json:"storage_url"` // Add this new field
 
