@@ -14,6 +14,10 @@ type Branch struct {
 	AppPaymentGatewayClient *string  `gorm:"default:null"`  // Payment gateway client details
 	AppPaymentGatewaySecret *string  `gorm:"default:null"`  // Payment gateway secret
 	AppPaymentGatewayEnv    *string  `gorm:"default:null"`  // Payment gateway secret
+	PaymentType             *string  `gorm:"default:null"`  // Payment gateway type: "hdfc_smart_gateway" or "razorpay"
+	RazorpayKeyId           *string  `gorm:"default:null"`  // Razorpay Key ID
+	RazorpayKeySecret       *string  `gorm:"default:null"`  // Razorpay Key Secret (encrypted)
+	RazorpayWebhookSecret   *string  `gorm:"default:null"`  // Razorpay Webhook Secret (encrypted)
 	Office                  bool     `gorm:"default:false"` // Flag to identify if this is an office branch
 	PhoneNumbers            []string `gorm:"type:text[]"`   // Array of phone numbers (PostgreSQL ARRAY type)
 }
