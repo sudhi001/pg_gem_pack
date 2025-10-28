@@ -33,6 +33,7 @@ type Subscribable struct {
 	MaximumVariableAmountPer          float64 `json:"maximumVariableAmountPer"`
 	DoNotAllowInstMoreThanDuration    string  `json:"doNotAllowInstMoreThanDurationLookUp"`
 	BranchCode                        string  `gorm:"index"` // Branch code this rate applies to, indexed
+	Branch                            Branch  `gorm:"foreignKey:BranchCode;references:Code"` // Branch association
 	Description                       *string `gorm:"default:null"`
 	ShortDescription                  *string `gorm:"default:null"`
 	TermsAndCondition                *string `gorm:"default:null"`
