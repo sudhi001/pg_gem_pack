@@ -26,4 +26,5 @@ type Device struct {
 	Timezone           string    `gorm:"default:null"`
 	RequestTime        string    `gorm:"default:null"`
 	SelectedBranchCode *string   `gorm:"default:null"` // User's selected branch code
+	DeviceInstanceID   string    `gorm:"index;default:null"` // Client-generated unique device instance ID for deduplication
 }
