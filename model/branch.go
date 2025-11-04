@@ -20,7 +20,6 @@ type Branch struct {
 	PaymentType             *string        `gorm:"default:null"`       // Payment gateway type: "hdfc_smart_gateway" or "razorpay"
 	RazorpayKeyId           *string        `gorm:"default:null"`       // Razorpay Key ID
 	RazorpayKeySecret       *string        `gorm:"default:null"`       // Razorpay Key Secret (encrypted)
-	RazorpayWebhookSecret   *string        `gorm:"default:null"`       // Razorpay Webhook Secret (encrypted)
 	Office                  bool           `gorm:"default:false"`      // Flag to identify if this is an office branch
 	PhoneNumbers            pq.StringArray `gorm:"type:text[]"`        // Array of phone numbers (PostgreSQL ARRAY type)
 }
