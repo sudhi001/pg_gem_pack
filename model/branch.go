@@ -10,6 +10,7 @@ type Branch struct {
 	Name                       string         `gorm:"index"`              // Name of the branch, indexed
 	Code                       string         `gorm:"index"`              // Branch code, not indexed
 	ConfigID                   string         `gorm:"index"`              // Configuration ID for the branch
+	ConfigIDForBeta            string         `gorm:"index"`              // Configuration ID for Beta/Testing
 	Description                string         `gorm:"index"`              // Description of the branch, not indexed
 	GST                        string         `gorm:"index"`              // GST details, not indexed
 	Address                    string         `gorm:"index"`              // Branch address, not indexed
