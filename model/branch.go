@@ -9,6 +9,7 @@ type Branch struct {
 	UID                        string         `gorm:"index"`              // Unique identifier, indexed
 	Name                       string         `gorm:"index"`              // Name of the branch, indexed
 	Code                       string         `gorm:"index"`              // Branch code, not indexed
+	ConfigID                   string         `gorm:"index"`              // Configuration ID for the branch
 	Description                string         `gorm:"index"`              // Description of the branch, not indexed
 	GST                        string         `gorm:"index"`              // GST details, not indexed
 	Address                    string         `gorm:"index"`              // Branch address, not indexed
