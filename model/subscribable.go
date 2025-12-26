@@ -39,4 +39,5 @@ type Subscribable struct {
 	TermsAndCondition                *string `gorm:"default:null"`
 	Thumbnail                         *string `gorm:"default:null"`
 	PrimaryImage                      *string `gorm:"default:null"`
+	IsOneTimePaymentOnSameDay         *bool   `gorm:"default:null" json:"isOneTimePaymentOnSameDay"`
 }
