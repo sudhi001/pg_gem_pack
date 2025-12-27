@@ -32,11 +32,11 @@ type Subscribable struct {
 	MinimumVariableAmountPer          float64 `json:"minimumVariableAmountPer"`
 	MaximumVariableAmountPer          float64 `json:"maximumVariableAmountPer"`
 	DoNotAllowInstMoreThanDuration    string  `json:"doNotAllowInstMoreThanDurationLookUp"`
-	BranchCode                        string  `gorm:"index"` // Branch code this rate applies to, indexed
+	BranchCode                        string  `gorm:"index"`                                 // Branch code this rate applies to, indexed
 	Branch                            Branch  `gorm:"foreignKey:BranchCode;references:Code"` // Branch association
 	Description                       *string `gorm:"default:null"`
 	ShortDescription                  *string `gorm:"default:null"`
-	TermsAndCondition                *string `gorm:"default:null"`
+	TermsAndCondition                 *string `gorm:"default:null"`
 	Thumbnail                         *string `gorm:"default:null"`
 	PrimaryImage                      *string `gorm:"default:null"`
 	IsOneTimePaymentOnSameDay         *bool   `gorm:"default:null" json:"isOneTimePaymentOnSameDay"`
