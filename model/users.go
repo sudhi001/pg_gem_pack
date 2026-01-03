@@ -33,8 +33,10 @@ type User struct {
 	LastLoginTime         *time.Time       `gorm:"default:null"`                  // Last login timestamp
 	LastLoginIP           *string          `gorm:"default:null"`                  // Last login IP address
 	LastLoginDeviceID     *string          `gorm:"default:null"`                  // Last login device ID
-	DateOfBirth           *time.Time       `gorm:"type:date;default:null"`        // User date of birth
-	Gender                *string          `gorm:"type:varchar(10);default:null"` // User gender (male/female/other)
+	DateOfBirth           *time.Time       `gorm:"type:date;default:null"`         // User date of birth
+	Gender                *string          `gorm:"type:varchar(10);default:null"`  // User gender (male/female/other)
+	NomineeName           *string          `gorm:"type:varchar(100);default:null"` // Nominee name
+	NomineeRelationship   *string          `gorm:"type:varchar(50);default:null"`  // Nominee relationship
 }
 
 // Strings is a custom type to handle []string serialization/deserialization.
