@@ -27,12 +27,14 @@ type User struct {
 	KYCCompleted          bool             `gorm:"default:false"`        // KYC completion status
 	RequestHash           *string          `gorm:"default:null"`         // Nullable request hash
 	Permissions           PermissionString `gorm:"type:text[];default:NULL"`
-	ReasonForBlock        *string          `gorm:"default:null"` // Nullable reason for block
-	ReasonForDeactivation *string          `gorm:"default:null"` // Nullable reason for deactivation
-	AppCustomerCode       *int             `gorm:"default:null"` // ACME customer code
-	LastLoginTime         *time.Time       `gorm:"default:null"` // Last login timestamp
-	LastLoginIP           *string          `gorm:"default:null"` // Last login IP address
-	LastLoginDeviceID     *string          `gorm:"default:null"` // Last login device ID
+	ReasonForBlock        *string          `gorm:"default:null"`                  // Nullable reason for block
+	ReasonForDeactivation *string          `gorm:"default:null"`                  // Nullable reason for deactivation
+	AppCustomerCode       *int             `gorm:"default:null"`                  // ACME customer code
+	LastLoginTime         *time.Time       `gorm:"default:null"`                  // Last login timestamp
+	LastLoginIP           *string          `gorm:"default:null"`                  // Last login IP address
+	LastLoginDeviceID     *string          `gorm:"default:null"`                  // Last login device ID
+	DateOfBirth           *time.Time       `gorm:"type:date;default:null"`        // User date of birth
+	Gender                *string          `gorm:"type:varchar(10);default:null"` // User gender (male/female/other)
 }
 
 // Strings is a custom type to handle []string serialization/deserialization.
