@@ -29,4 +29,6 @@ type Branch struct {
 	PaymentGateWayErrorMessage *string        `gorm:"default:null"`       // Error message when payment is not accepted
 	Office                     bool           `gorm:"default:false"`      // Flag to identify if this is an office branch
 	PhoneNumbers               pq.StringArray `gorm:"type:text[]"`        // Array of phone numbers (PostgreSQL ARRAY type)
+	Latitude                   *float64       `gorm:"default:null"`       // Branch latitude coordinate
+	Longitude                  *float64       `gorm:"default:null"`       // Branch longitude coordinate
 }
