@@ -12,6 +12,7 @@ type Transaction struct {
 	BranchCode      string           `gorm:"size:50"`
 	BranchUID       string           `gorm:"size:255"`
 	UID             string           `gorm:"size:255"`
+	RequestHash     string           `gorm:"size:255;index"` // For idempotency deduplication
 	Payload         JSON             `gorm:"type:jsonb;not null"` // Change Payload to use jsonb type in PostgreSQL
 	TransactionLogs []TransactionLog `gorm:"foreignKey:TransactionID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 }

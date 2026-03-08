@@ -19,6 +19,7 @@ type PhoneVerification struct {
 	Send                 bool       `gorm:"column:send;default:false"`
 	StatusMessage        *string    `gorm:"column:status_message;default:null"`
 	RequestHash          string     `gorm:"column:requestHash;index"`
+	Attempts             int        `gorm:"column:attempts;default:0"`
 }
 
 // IsOTPExpired checks if the OTP has expired based on the given expiration duration
