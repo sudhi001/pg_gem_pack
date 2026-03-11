@@ -14,8 +14,8 @@ type EmployeePresenceTracker struct {
 	TotalEntries     int           `gorm:"not null;default:0"`              // Total times the employee entered
 	TotalExits       int           `gorm:"not null;default:0"`              // Total times the employee exited
 	TotalMovements   int           `gorm:"not null;default:0"`              // Total times the employee entered and exited (combined)
-	TotalTimeInside  time.Duration `gorm:"not null;default:0"`              // Total time spent inside the organization
-	TotalTimeOutside time.Duration `gorm:"not null;default:0"`              // Total time spent outside the organization
+	TotalTimeInside  int `gorm:"not null;default:0"` // Total time spent inside the organization (in minutes)
+	TotalTimeOutside int `gorm:"not null;default:0"` // Total time spent outside the organization (in minutes)
 	CreatedAt        time.Time     `gorm:"autoCreateTime"`                  // Record creation timestamp
 	UpdatedAt        time.Time     `gorm:"autoUpdateTime"`                  // Record last updated timestamp
 }
